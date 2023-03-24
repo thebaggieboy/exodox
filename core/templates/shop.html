@@ -1,0 +1,140 @@
+{% extends "base_.html" %}
+{% load static %}
+{% block content %}
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+           
+                    <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                    <span class="breadcrumb-item active">Shop List</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Shop Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+          
+
+
+          
+            <!-- Products Start -->
+<div class="container-fluid pt-5 pb-3">
+
+    <div class="row px-xl-5">
+        {% for item in object_list %}
+        <div class="col-lg-4 col-md-6 mb-4">
+  
+          <div class="card">
+  
+            <div class="view overlay p-3">
+              {% comment %} <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top" {% endcomment %}
+              <img src="{{ item.image.url }}" class="card-img-top img-fluid" style="height: 180px;">
+              <a href="{{ item.get_absolute_url }}">
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+  
+            <div class="card-body text-center">
+             
+              <h5>
+                <strong>
+                  <a href="{{ item.get_absolute_url }}" class="text-dark">{{ item.title }}
+                    <span class="badge badge-pill {{ item.get_label_display }}-color badge-warning">NEW</span>
+                  </a>
+                </strong>
+              </h5>
+  
+              <h4 class="font-weight-bold blue-text">
+                <strong>$
+                {% if item.discount_price %}
+                {{ item.discount_price }}
+                {% else %}
+                {{ item.price }}
+                {% endif %}
+                </strong>
+              </h4>
+              <div class="d-flex align-items-center justify-content-center mb-1">
+                <small class="fa fa-star text-primary mr-1"></small>
+                <small class="fa fa-star text-primary mr-1"></small>
+                <small class="fa fa-star text-primary mr-1"></small>
+                <small class="fa fa-star text-primary mr-1"></small>
+                <small class="fa fa-star text-primary mr-1"></small>
+                <small>(99)</small>
+            </div> <br>
+            <a href="{% url 'core:add-to-cart' slug=item.slug %}" class="text-light p-2" style="background-color: #5A189A; color: white;"> <i class="fa fa-cart"></i> Add to cart</a>
+      
+  
+            </div>
+  
+          </div>
+  
+        </div>
+        {% endfor %}
+
+      
+                
+          
+            
+            </div>
+        </div>
+        
+    
+</div>
+<!-- Products End -->
+
+            
+                            </div>
+                        </div>
+                    </div>
+                   
+                    
+                   
+                   
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+   
+    <div class="container text-center p-2">
+     
+    
+
+
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item">
+            {%if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}" class="page-link"><span>Previous</span></a> 
+        {% endif %}
+           
+          </li>
+          <li class="page-item"><a class="page-link" href="#"><span>{{page_obj.number}}</span></a></li>
+         
+          <li class="page-item">
+            {% if page_obj.has_next %} {# whether the next page exists #}
+            <a class="page-link" href="?page={{page_obj.next_page_number}}"><span>Next</span></a> 
+        {% endif %}
+          
+          </li>
+        </ul>
+      </nav>
+    </div>
+ 
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+
+
+
+{% endblock content %}

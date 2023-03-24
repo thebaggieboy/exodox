@@ -1,0 +1,24 @@
+{% extends "base_.html" %}
+{% load static %}
+
+{% block content %}
+  <section>
+    <p class="lead text-center">Awaiting payment confirmation</p>
+    <h2>{{ order.payment.amount }}</h2>
+  
+   <div class="container text-center">
+    <div class="d-flex justify-content-center">
+      <div style="font-size:30px" class="spinner-border" role="status">
+        <span class="visually-hidden"></span>
+      </div>
+    </div>
+  </div> <br>
+ 
+  <div class="container text-center">
+    <div class="d-flex justify-content-center">
+      <a href="" class="btn btn-dark">Go to homepage</a>
+    </div>
+  </div>
+  
+  </section>
+{% endblock content %}

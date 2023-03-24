@@ -1,0 +1,40 @@
+{% extends "base_.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+  <main >
+    <div class="container wow fadeIn">
+      <h2 class="my-5 h2 text-center">Checkout form</h2>
+     
+      <div class="">
+        {% include "order_snippet.html" %}
+      </div>
+              <hr>
+
+              <h3>Payment option</h3>
+
+              <div class="d-block my-3">
+                {% for value, name in form.fields.payment_option.choices %}
+                <div class="custom-control custom-radio">
+                  <input id="{{ name }}" name="payment_option" value="{{ value }}" type="radio" class="custom-control-input" required>
+                  <label class="custom-control-label" for="{{ name }}">{{ name }}</label>
+                </div>
+                {% endfor %}
+              </div>
+
+              <hr class="mb-4">
+              <a href="{% url 'core:verify' %}" class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</a>
+<br>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+  </main>
+
+{% endblock content %}
